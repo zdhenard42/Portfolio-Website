@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Thick Client Migrator</title>
+    <meta name="description" content="Thick Client Migrator" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo-container">
+          <div class="header__logo-img-cont">
+            <img
+              src="./assets/png/Zachary-Henard.png"
+              alt="Zachary Henard"
+              class="header__logo-img"
+            />
+          </div>
+          <span class="header__logo-sub">Zachary Henard</span>
+        </div>
+        <div class="header__main">
+          <ul class="header__links">
+            <li class="header__link-wrapper">
+              <a href="./index.html" class="header__link"> Home </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./Zachary_Henard.pdf" class="header__link">Resume</a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./index.html#about" class="header__link">About </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./index.html#projects" class="header__link">
+                Projects
+              </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./index.html#contact" class="header__link"> Contact </a>
+            </li>
+          </ul>
+          <div class="header__main-ham-menu-cont">
+            <img
+              src="./assets/svg/ham-menu.svg"
+              alt="hamburger menu"
+              class="header__main-ham-menu"
+            />
+            <img
+              src="./assets/svg/ham-menu-close.svg"
+              alt="hamburger menu close"
+              class="header__main-ham-menu-close d-none"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="header__sm-menu">
+        <div class="header__sm-menu-content">
+          <ul class="header__sm-menu-links">
+            <li class="header__sm-menu-link">
+              <a href="./index.html"> Home </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#about"> About </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#projects"> Projects </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#contact"> Contact </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section class="project-cs-hero">
+      <div class="project-cs-hero__content">
+        <h1 class="heading-primary">Thick Client Migrator</h1>
+        <div class="project-cs-hero__info">
+          <p class="text-primary">
+           Two scripts using <strong>(Batch & PowerShell)</strong> to migrate employees from Thick Clients to Thin Clients. Between both scripts, 13 tasks are automated.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="project-details">
+      <div class="main-container">
+        <div class="project-details__content">
+          <div class="project-details__showcase-img-cont">
+            <img
+              src="./assets/jpeg/VM_Pic.png"
+              alt="Project Image"
+              class="project-details__showcase-img"
+            />
+          </div>
+          <div class="project-details__content-main">
+            <div class="project-details__desc">
+              <h3 class="project-details__content-title">Project Overview</h3>
+              <p class="project-details__desc-para">
+                During an internship, I was assigned the task of migrating employees from Thick Clients to Thin Clients. After two or three times of manual migration, I knew that there had to be a way of automating this. Learning how to automate one task at a time, I eventually automated the entire process. Teaching myself Batch and Powershell along the way!
+              </p>
+              <p class="project-details__desc-para">
+                After some debugging, the scripts were stored on a NAS and the paths were added to users login script, completely removing the need for human intervention.<br>
+                <ul class="project-details__desc-para">
+                  The scripts performed the following tasks:
+                  <li>• Store paths of Users Map Drives</li>
+                  <li>• Generate custom login script to be utilized by Thin Client</li>
+                  <li>• Upload the login script to NAS</li>
+                  <li>• Export 3 browsers bookmarks</li>
+                  <li>• Empty user's recycling bin</li>
+                  <li>• Convert & Compress user's certificates into .PFX format</li>
+                  <li>• Compress files that are incompatible with OneDrive</li>
+                  <li>• Export Outlook Signatures</li>
+                  <li>• Export Excel Macros</li>
+                  <li>• Import browser bookmarks into Thin Client</li>
+                  <li>• Decompress the files that were incompatible with OneDrive</li>
+                  <li>• Import Outlook Signatures</li>
+                  <br><br>While I was the sole author of this script, I created it during company time therefore I will not be making the source code publicly available.
+                </ul>
+              </p>
+            </div>
+            <div class="project-details__tools-used">
+              <h3 class="project-details__content-title">Tools Used</h3>
+              <div class="skills">
+                <div class="skills__skill">Batch</div>
+                <div class="skills__skill">OneDrive</div>
+                <div class="skills__skill">CertUtil</div>
+                <div class="skills__skill">PowerShell</div>
+                <div class="skills__skill">Horizon</div>
+                <div class="skills__skill">VDI</div>
+                <div class="skills__skill">Active Directory</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="main-footer__upper">
+          <div class="main-footer__row main-footer__row-1">
+          </div>
+          <div class="main-footer__row main-footer__row-2">
+            <h4 class="heading heading-sm text-lt">Zachary Henard</h4>
+            <p class="main-footer__short-desc">
+              "Once a new technology rolls over you, if you're not part of the steamroller, you're part of the road."<br>
+              -Stewart Brand
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./index.js"></script>
+  </body>
+</html>

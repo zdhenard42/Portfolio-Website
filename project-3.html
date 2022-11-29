@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Thick2Thin Converter</title>
+    <meta name="description" content="Thick2Thin Converter" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo-container">
+          <div class="header__logo-img-cont">
+            <img
+              src="./assets/png/Zachary-Henard.png"
+              alt="Zachary Henard"
+              class="header__logo-img"
+            />
+          </div>
+          <span class="header__logo-sub">Zachary Henard</span>
+        </div>
+        <div class="header__main">
+          <ul class="header__links">
+            <li class="header__link-wrapper">
+              <a href="./index.html" class="header__link"> Home </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./Zachary_Henard.pdf" class="header__link">Resume</a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./index.html#about" class="header__link">About </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./index.html#projects" class="header__link">
+                Projects
+              </a>
+            </li>
+            <li class="header__link-wrapper">
+              <a href="./index.html#contact" class="header__link"> Contact </a>
+            </li>
+          </ul>
+          <div class="header__main-ham-menu-cont">
+            <img
+              src="./assets/svg/ham-menu.svg"
+              alt="hamburger menu"
+              class="header__main-ham-menu"
+            />
+            <img
+              src="./assets/svg/ham-menu-close.svg"
+              alt="hamburger menu close"
+              class="header__main-ham-menu-close d-none"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="header__sm-menu">
+        <div class="header__sm-menu-content">
+          <ul class="header__sm-menu-links">
+            <li class="header__sm-menu-link">
+              <a href="./index.html"> Home </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#about"> About </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#projects"> Projects </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#contact"> Contact </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section class="project-cs-hero">
+      <div class="project-cs-hero__content">
+        <h1 class="heading-primary">Thick2Thin Converter</h1>
+        <div class="project-cs-hero__info">
+          <p class="text-primary">
+            Automated conversion of Thick Clients to Thin Clients utilizing <strong>Batch</strong>, <strong>PowerShell</strong>, <strong>Dell Wyze Converter</strong>, and <strong>WinPE</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="project-details">
+      <div class="main-container">
+        <div class="project-details__content">
+          <div class="project-details__showcase-img-cont">
+            <img
+              src="./assets/jpeg/Wyse_logo.svg.png"
+              alt="Project Image"
+              class="project-details__showcase-img"
+            />
+          </div>
+          <div class="project-details__content-main">
+            <div class="project-details__desc">
+              <h3 class="project-details__content-title">Project Overview</h3>
+              <p class="project-details__desc-para">
+                During an Internship, I was assigned with the task of re-imaging, then converting 60+ Thick Clients to Thin Clients. I immediately began teaching myself how to automate it.
+                Automating one task at a time, I figured out how to script the entire re-imaging process using Batch and WinPE. However, the conversion part took some deep digging through multiple forums as not much documentation was provided by DELL regarding this. <br>After about a week, I had successfully automated the entire process including some aspects that were not able to be done manually!
+              </p>
+              <p class="project-details__desc-para">
+                <ul class="project-details__desc-para">
+                  The Re-Imaging script performed the following tasks:
+                  <li>• Format existing drives</li>
+                  <li>• Create new partitions</li>
+                  <li>• Create a bootable partition</li>
+                  <li>• Install custom Disk Image</li>
+                  <li>• Change Device Name to the current Dell Service Tag</li>
+                  <li>• Request to join the company domain</li>
+                  <li>• Upload .txt file to NAS containing the Service Tag letting SysAd know that it is waiting on Domain approval</li>
+                  <li>• Update custom apps that were installed within the image</li>
+                  <li>• Delete unnecessary files that were needed for imaging</li>
+                  <li>• Run Windows Updates</li>
+                  <li>• Continue to restart, checking each time if any DellCommand or Windows Updates are available.</li>
+                  <li>• When none are available, the Converter script is ran.</li>
+                </ul>
+                <ul class="project-details__desc-para">
+                  <br><br>The Converter script performed the following tasks:
+                  <li>• Silently Install Dell Wyse Converter</li>
+                  <li>• Install VMware Horizon Client</li>
+                  <li>• Configure System Preferences + Peripherals</li>
+                  <li>• Configures Wyze Group Key</li>
+                  <li>• Configures Horizon Connection Server</li>
+                  <li>• Enrolls device into WMS</li>
+                  <li>• Sends Device ID to network drive to notify SysAd it is ready to be accepted in WMS</li>
+                  <li>• Restarts once device accepted to pull updates</li>
+                  <br><br>While I was the sole author of this script, I created it during company time therefore I will not be making the source code publicly available.
+                </ul>
+              </p>
+            </div>
+            <div class="project-details__tools-used">
+              <h3 class="project-details__content-title">Tools Used</h3>
+              <div class="skills">
+                <div class="skills__skill">WinPE</div>
+                <div class="skills__skill">Wyse</div>
+                <div class="skills__skill">Batch</div>
+                <div class="skills__skill">Powershell</div>
+                <div class="skills__skill">NAS</div>
+                <div class="skills__skill">Active Directory</div>
+                <div class="skills__skill">DISM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="main-footer__upper">
+          <div class="main-footer__row main-footer__row-1">
+          </div>
+          <div class="main-footer__row main-footer__row-2">
+            <h4 class="heading heading-sm text-lt">Zachary Henard</h4>
+            <p class="main-footer__short-desc">
+              "If you think you know-it-all about cybersecurity, this discipline was probably ill-explained to you."
+                - Stephane Nappo
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./index.js"></script>
+  </body>
+</html>
