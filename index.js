@@ -1,1 +1,38 @@
-const _0x30acfa=_0x4c45;(function(_0x8f68e3,_0x5afab7){const _0x424f5f=_0x4c45,_0x127512=_0x8f68e3();while(!![]){try{const _0x5d12fe=parseInt(_0x424f5f(0x1d9))/0x1+parseInt(_0x424f5f(0x1d7))/0x2*(parseInt(_0x424f5f(0x1df))/0x3)+-parseInt(_0x424f5f(0x1c9))/0x4+parseInt(_0x424f5f(0x1ca))/0x5*(-parseInt(_0x424f5f(0x1e1))/0x6)+-parseInt(_0x424f5f(0x1ce))/0x7+-parseInt(_0x424f5f(0x1e3))/0x8*(parseInt(_0x424f5f(0x1d6))/0x9)+parseInt(_0x424f5f(0x1cc))/0xa;if(_0x5d12fe===_0x5afab7)break;else _0x127512['push'](_0x127512['shift']());}catch(_0x4416f2){_0x127512['push'](_0x127512['shift']());}}}(_0x5169,0xb64d5));function _0x5169(){const _0x2e19a3=['click','remove','.header__sm-menu-link','index.html','classList','header__sm-menu--active','href','219717dpktpY','203686yyuycU','d-none','538722oBUaAx','querySelectorAll','querySelector','.header__main-ham-menu-close','addEventListener','.header__main-ham-menu','3ROdTTQ','contains','102eQWzgU','.header__main-ham-menu-cont','384SVUiQC','5612448uGsUCI','49585LlYvrr','add','36604910KesjAi','.header__sm-menu','5675754yikOaF'];_0x5169=function(){return _0x2e19a3;};return _0x5169();}const hamMenuBtn=document['querySelector'](_0x30acfa(0x1e2)),smallMenu=document[_0x30acfa(0x1db)](_0x30acfa(0x1cd)),headerHamMenuBtn=document['querySelector'](_0x30acfa(0x1de)),headerHamMenuCloseBtn=document[_0x30acfa(0x1db)](_0x30acfa(0x1dc)),headerSmallMenuLinks=document[_0x30acfa(0x1da)](_0x30acfa(0x1d1));function _0x4c45(_0x401d8a,_0x2783f1){const _0x51690c=_0x5169();return _0x4c45=function(_0x4c45b3,_0x2c230c){_0x4c45b3=_0x4c45b3-0x1c9;let _0x3110c3=_0x51690c[_0x4c45b3];return _0x3110c3;},_0x4c45(_0x401d8a,_0x2783f1);}hamMenuBtn['addEventListener'](_0x30acfa(0x1cf),()=>{const _0x175766=_0x30acfa;smallMenu[_0x175766(0x1d3)][_0x175766(0x1e0)](_0x175766(0x1d4))?smallMenu['classList'][_0x175766(0x1d0)](_0x175766(0x1d4)):smallMenu[_0x175766(0x1d3)][_0x175766(0x1cb)](_0x175766(0x1d4)),headerHamMenuBtn['classList'][_0x175766(0x1e0)](_0x175766(0x1d8))?(headerHamMenuBtn[_0x175766(0x1d3)][_0x175766(0x1d0)]('d-none'),headerHamMenuCloseBtn[_0x175766(0x1d3)][_0x175766(0x1cb)](_0x175766(0x1d8))):(headerHamMenuBtn[_0x175766(0x1d3)]['add'](_0x175766(0x1d8)),headerHamMenuCloseBtn[_0x175766(0x1d3)][_0x175766(0x1d0)](_0x175766(0x1d8)));});for(let i=0x0;i<headerSmallMenuLinks['length'];i++){headerSmallMenuLinks[i][_0x30acfa(0x1dd)]('click',()=>{const _0x50801b=_0x30acfa;smallMenu[_0x50801b(0x1d3)][_0x50801b(0x1d0)](_0x50801b(0x1d4)),headerHamMenuBtn[_0x50801b(0x1d3)][_0x50801b(0x1d0)](_0x50801b(0x1d8)),headerHamMenuCloseBtn[_0x50801b(0x1d3)]['add'](_0x50801b(0x1d8));});}const headerLogoConatiner=document[_0x30acfa(0x1db)]('.header__logo-container');headerLogoConatiner[_0x30acfa(0x1dd)](_0x30acfa(0x1cf),()=>{const _0x3ed498=_0x30acfa;location[_0x3ed498(0x1d5)]=_0x3ed498(0x1d2);});
+// ---
+const hamMenuBtn = document.querySelector('.header__main-ham-menu-cont')
+const smallMenu = document.querySelector('.header__sm-menu')
+const headerHamMenuBtn = document.querySelector('.header__main-ham-menu')
+const headerHamMenuCloseBtn = document.querySelector(
+  '.header__main-ham-menu-close'
+)
+const headerSmallMenuLinks = document.querySelectorAll('.header__sm-menu-link')
+
+hamMenuBtn.addEventListener('click', () => {
+  if (smallMenu.classList.contains('header__sm-menu--active')) {
+    smallMenu.classList.remove('header__sm-menu--active')
+  } else {
+    smallMenu.classList.add('header__sm-menu--active')
+  }
+  if (headerHamMenuBtn.classList.contains('d-none')) {
+    headerHamMenuBtn.classList.remove('d-none')
+    headerHamMenuCloseBtn.classList.add('d-none')
+  } else {
+    headerHamMenuBtn.classList.add('d-none')
+    headerHamMenuCloseBtn.classList.remove('d-none')
+  }
+})
+
+for (let i = 0; i < headerSmallMenuLinks.length; i++) {
+  headerSmallMenuLinks[i].addEventListener('click', () => {
+    smallMenu.classList.remove('header__sm-menu--active')
+    headerHamMenuBtn.classList.remove('d-none')
+    headerHamMenuCloseBtn.classList.add('d-none')
+  })
+}
+
+// ---
+const headerLogoConatiner = document.querySelector('.header__logo-container')
+
+headerLogoConatiner.addEventListener('click', () => {
+  location.href = 'index.html'
+})
