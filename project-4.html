@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QV4WF93J9R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QV4WF93J9R');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Currency Converter</title>
+    <meta name="description" content="Details of Currency Converter" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__logo-container">
+          <div class="header__logo-img-cont">
+            <img
+              src="./assets/png/Zachary-Henard.png"
+              alt="Zachary Henard Logo Image"
+              class="header__logo-img"
+            />
+          </div>
+          <span class="header__logo-sub">Zachary Henard</span>
+        </div>
+        <div class="header__main">
+            <ul class="header__links">
+              <li class="header__link-wrapper">
+                <a href="./index.html" class="header__link"> Home </a>
+              </li>
+              <li class="header__link-wrapper">
+                <a href="https://www.linkedin.com/in/zachary-henard/" class="header__link"> LinkedIn </a>
+              </li>
+              <li class="header__link-wrapper">
+                <a href="./Zachary_Henard.pdf" class="header__link">Resume</a>
+              </li>
+              <li class="header__link-wrapper">
+                <a href="./index.html#about" class="header__link">About </a>
+              </li>
+              <li class="header__link-wrapper">
+                <a href="./index.html#projects" class="header__link">
+                  Projects
+                </a>
+              </li>
+              <li class="header__link-wrapper">
+                <a href="./index.html#contact" class="header__link"> Contact </a>
+              </li>
+            </ul>
+            <div class="header__main-ham-menu-cont">
+              <img
+                src="./assets/svg/ham-menu.svg"
+                alt="hamburger menu"
+                class="header__main-ham-menu"
+              />
+              <img
+                src="./assets/svg/ham-menu-close.svg"
+                alt="hamburger menu close"
+                class="header__main-ham-menu-close d-none"
+              />
+            </div>
+          </div>
+      </div>
+      <div class="header__sm-menu">
+        <div class="header__sm-menu-content">
+          <ul class="header__sm-menu-links">
+            <li class="header__sm-menu-link">
+              <a href="./index.html"> Home </a>
+            </li>
+            <li class="header__sm-menu-link">
+              <a href="./Zachary_Henard.pdf"> Resume </a>
+            </li>
+            <li class="header__sm-menu-link">
+              <a href="./index.html#about"> About </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#projects"> Projects </a>
+            </li>
+
+            <li class="header__sm-menu-link">
+              <a href="./index.html#contact"> Contact </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section class="project-cs-hero">
+      <div class="project-cs-hero__content">
+        <h1 class="heading-primary">Currency Converter</h1>
+        <div class="project-cs-hero__info">
+          <p class="text-primary">
+            A browser extension <strong>(JavaScript)</strong> that converts currency values on a webpage to a different currency using live exchange rates via API. <br>200+ currencies supported including cryptocurrencies!<br> <br>
+                <a
+                href="https://github.com/zdhenard42/Currency-converter-extension"
+                class="btn btn--med btn--theme dynamicBgClr"
+                target="_blank"
+                >Link to Repository</a
+              >
+              <a
+                href="https://chrome.google.com/webstore/detail/currency-converter/clffgnnegliikhkgahflnhbbhebjhene?hl=en&authuser=0"
+                class="btn btn--med btn--theme dynamicBgClr"
+                target="_blank"
+                >Chrome Web Store</a
+              >
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="project-details">
+      <div class="main-container">
+        <div class="project-details__content">
+          <h3 class="project-details__content-title">Details</h3>
+              <p><img src="./assets/png/Converter.PNG" alt="SOC Multi-tool in action" width="auto" height="auto"></p>
+
+              <ul class="project-details__desc-para">
+                <p>One day I was browsing cryptocurrency communities online and came across a request for a software that converted online prices. After reviewing the suggestions made to this post, I noticed none of them were using live exchange rates. <br>
+                With prices constantly changing, I knew there was a need for an extension that used live exchange rates, so I made this!</p>
+              </ul>
+              <h3 class="project-details__content-title">Technical Details</h3>
+              <ul class="project-details__desc-para">
+                <p>I am using string manipulation within the API request to allow a very large amount of currencies to be converted.<br>
+                The exchange rate is derived from a 
+                <a href="https://github.com/fawazahmed0/currency-api" class="blue-link">public API</a>.<br>Instead of implementing each currency manually, I alter the same api request based on user choice. This allows my extension to support 200+ currencies while remaining extremely lightweight.</p>
+              </ul>
+        </div>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="main-footer__upper">
+          <div class="main-footer__row main-footer__row-1">
+          </div>
+          <div class="main-footer__row main-footer__row-2">
+            <h4 class="heading heading-sm text-lt">Zachary Henard</h4>
+            <p class="main-footer__short-desc">
+              "If you don't make mistakes, you're not working on hard enough problems. And that's a big mistake."<br>
+              -Frank Wilczek
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./index.js"></script>
+  </body>
+</html>
