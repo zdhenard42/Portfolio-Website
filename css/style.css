@@ -41,6 +41,12 @@ body {
   overflow-y: scroll;
   font-family: 'Source Sans Pro', sans-serif; }
 
+.heading-sec__sub li {
+  list-style-type: disc;
+  margin-bottom: 5px;
+  text-align: left !important;
+}
+
 a {
   text-decoration: none;
   color: inherit; }
