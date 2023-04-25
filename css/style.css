@@ -54,7 +54,8 @@ a {
 .blue-link {
     color: blue;
     text-decoration: underline;
-    cursor: pointer; }
+    cursor: pointer; 
+  }
 
 li {
   list-style: none; }
