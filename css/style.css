@@ -728,3 +728,37 @@ object-fit: contain;
   to {
     opacity: 0;
     top: 27px; } }
+
+.ua-input-wrapper {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f7;
+}
+
+.ua-input {
+  width: 70%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.ua-input-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.ua-input-button:hover {
+  background-color: #2980b9;
+}
+
