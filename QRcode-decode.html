@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QV4WF93J9R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QV4WF93J9R');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>QR Code Reader</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet" />
+</head>
+
+<body">
+    <header class="header">
+        <div class="header__content">
+          <div class="header__logo-container">
+            <div class="header__logo-img-cont">
+              <img
+                src="./assets/png/Zachary-Henard.png"
+                alt="Zachary Henard Logo Image"
+                class="header__logo-img"
+              />
+            </div>
+            <span class="header__logo-sub">Zachary Henard</span>
+          </div>
+          <div class="header__main">
+              <ul class="header__links">
+                <li class="header__link-wrapper">
+                  <a href="./index.html" class="header__link"> Home </a>
+                </li>
+                <li class="header__link-wrapper">
+                  <a href="https://www.linkedin.com/in/zachary-henard/" class="header__link"> LinkedIn </a>
+                </li>
+                <li class="header__link-wrapper">
+                  <a href="./Zachary_Henard.pdf" class="header__link">Resume</a>
+                </li>
+                <li class="header__link-wrapper">
+                  <a href="./index.html#about" class="header__link">About </a>
+                </li>
+                <li class="header__link-wrapper">
+                  <a href="./index.html#projects" class="header__link">
+                    Projects
+                  </a>
+                </li>
+                <li class="header__link-wrapper">
+                  <a href="./index.html#contact" class="header__link"> Contact </a>
+                </li>
+              </ul>
+              <div class="header__main-ham-menu-cont">
+                <img
+                  src="./assets/svg/ham-menu.svg"
+                  alt="hamburger menu"
+                  class="header__main-ham-menu"
+                />
+                <img
+                  src="./assets/svg/ham-menu-close.svg"
+                  alt="hamburger menu close"
+                  class="header__main-ham-menu-close d-none"
+                />
+              </div>
+            </div>
+        </div>
+        <div class="header__sm-menu">
+          <div class="header__sm-menu-content">
+            <ul class="header__sm-menu-links">
+              <li class="header__sm-menu-link">
+                <a href="./index.html"> Home </a>
+              </li>
+              <li class="header__sm-menu-link">
+                <a href="./Zachary_Henard.pdf"> Resume </a>
+              </li>
+              <li class="header__sm-menu-link">
+                <a href="./index.html#about"> About </a>
+              </li>
+  
+              <li class="header__sm-menu-link">
+                <a href="./index.html#projects"> Projects </a>
+              </li>
+  
+              <li class="header__sm-menu-link">
+                <a href="./index.html#contact"> Contact </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <section class="project-cs-hero">
+        <div class="project-cs-hero__content">
+            <form id="qrForm" enctype="multipart/form-data" action="http://api.qrserver.com/v1/read-qr-code/" method="POST">
+                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                <label for="qrCodeImage">Upload QR Code Image:</label>
+                <input name="file" type="file" id="qrCodeImage" placeholder="Select QR Code Image" />
+                <input type="submit" value="Read QR code" />
+            </form>
+    
+            <!-- This is optional: to show the response on the page -->
+            <pre id="responseOutput"></pre>
+    
+            <script>
+                // Select the form element
+                const form = document.getElementById('qrForm');
+    
+                // Add an event listener to intercept the form submission
+                form.addEventListener('submit', async (event) => {
+                    // Prevent the form from submitting the traditional way (page refresh)
+                    event.preventDefault();
+    
+                    // Use FormData to get the form data
+                    const formData = new FormData(form);
+    
+                    // Use Fetch API to send the form data
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+    
+                    // Convert the response to JSON
+                    const data = await response.json();
+    
+                    // Store the response in a variable (or handle it however you like)
+                    // Add this inside the form's event listener after getting the JSON response
+
+                    // Extract the 'data' value
+                    const qrData = data[0].symbol[0].data;
+                    const encodedQrData = encodeURIComponent(qrData);
+
+
+                    // Store the extracted data in a variable (or handle it however you like)
+                    console.log(qrData); // just for checking, will log the URL to the console
+                    console.log(encodedQrData);
+                    // Now you can use `qrData` to send it to another API or do anything else you want with it.
+                    const apiUrl = `https://api.redirect-checker.net/?url=${encodedQrData}&timeout=5&maxhops=10&meta-refresh=1&format=json&more=1`;
+                    
+                    // Now, use the Fetch API to send a GET request to this URL:
+                    fetch(apiUrl)
+                        .then(response => response.json())  // assuming server responds with json
+                        .then(data => {
+                            console.log(data);  // log the response data from the second API
+                        })
+                        .catch(error => {
+                            console.error('There was an error!', error);
+                        });
+                                    });
+            </script>
+        </div>
+    </section>
+    
+
+    <section class="project-details">
+        <div class="main-container">
+            <div class="project-details__content">
+                <div class="project-details__showcase-img-cont">
+                    <div id="output" class="project-details__desc-para"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="main-container">
+          <div class="main-footer__upper">
+            <div class="main-footer__row main-footer__row-1">
+            </div>
+            <div class="main-footer__row main-footer__row-2">
+              <h4 class="heading heading-sm text-lt">Zachary Henard</h4>
+              <p class="main-footer__short-desc">
+                "If you don't make mistakes, you're not working on hard enough problems. And that's a big mistake."<br>
+                -Frank Wilczek
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+</body>
+
+</html>
