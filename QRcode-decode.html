@@ -17,144 +17,109 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet" />
 </head>
 
-<body">
-    <header class="header">
-        <div class="header__content">
-          <div class="header__logo-container">
-            <div class="header__logo-img-cont">
-              <img
-                src="./assets/png/Zachary-Henard.png"
-                alt="Zachary Henard Logo Image"
-                class="header__logo-img"
-              />
-            </div>
-            <span class="header__logo-sub">Zachary Henard</span>
-          </div>
-          <div class="header__main">
-              <ul class="header__links">
-                <li class="header__link-wrapper">
-                  <a href="./index.html" class="header__link"> Home </a>
-                </li>
-                <li class="header__link-wrapper">
-                  <a href="https://www.linkedin.com/in/zachary-henard/" class="header__link"> LinkedIn </a>
-                </li>
-                <li class="header__link-wrapper">
-                  <a href="./Zachary_Henard.pdf" class="header__link">Resume</a>
-                </li>
-                <li class="header__link-wrapper">
-                  <a href="./index.html#about" class="header__link">About </a>
-                </li>
-                <li class="header__link-wrapper">
-                  <a href="./index.html#projects" class="header__link">
-                    Projects
-                  </a>
-                </li>
-                <li class="header__link-wrapper">
-                  <a href="./index.html#contact" class="header__link"> Contact </a>
-                </li>
-              </ul>
-              <div class="header__main-ham-menu-cont">
-                <img
-                  src="./assets/svg/ham-menu.svg"
-                  alt="hamburger menu"
-                  class="header__main-ham-menu"
-                />
-                <img
-                  src="./assets/svg/ham-menu-close.svg"
-                  alt="hamburger menu close"
-                  class="header__main-ham-menu-close d-none"
-                />
-              </div>
-            </div>
-        </div>
-        <div class="header__sm-menu">
-          <div class="header__sm-menu-content">
-            <ul class="header__sm-menu-links">
-              <li class="header__sm-menu-link">
-                <a href="./index.html"> Home </a>
-              </li>
-              <li class="header__sm-menu-link">
-                <a href="./Zachary_Henard.pdf"> Resume </a>
-              </li>
-              <li class="header__sm-menu-link">
-                <a href="./index.html#about"> About </a>
-              </li>
-  
-              <li class="header__sm-menu-link">
-                <a href="./index.html#projects"> Projects </a>
-              </li>
-  
-              <li class="header__sm-menu-link">
-                <a href="./index.html#contact"> Contact </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-      <section class="project-cs-hero">
+<body>
+  <div id="header-placeholder"></div>
+  <script>
+      $(function(){
+          $("#header-placeholder").load("header.html");
+      });
+  </script>  
+    <section class="project-cs-hero">
         <div class="project-cs-hero__content">
-            <form id="qrForm" enctype="multipart/form-data" action="https://api.qrserver.com/v1/read-qr-code/" method="POST">
-                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                <label for="qrCodeImage">Upload QR Code Image:</label>
-                <input name="file" type="file" id="qrCodeImage" placeholder="Select QR Code Image" />
-                <input type="submit" value="Read QR code" />
-            </form>
-    
-            <!-- This is optional: to show the response on the page -->
-            <pre id="responseOutput"></pre>
-    
-            <script>
-                // Select the form element
-                const form = document.getElementById('qrForm');
-    
-                // Add an event listener to intercept the form submission
-                form.addEventListener('submit', async (event) => {
-                    // Prevent the form from submitting the traditional way (page refresh)
-                    event.preventDefault();
-    
-                    // Use FormData to get the form data
-                    const formData = new FormData(form);
-    
-                    // Use Fetch API to send the form data
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData
-                    });
-    
-                    // Convert the response to JSON
-                    const data = await response.json();
-    
-                    // Store the response in a variable (or handle it however you like)
-                    // Add this inside the form's event listener after getting the JSON response
-
-                    // Extract the 'data' value
-                    const qrData = data[0].symbol[0].data;
-                    const encodedQrData = encodeURIComponent(qrData);
-
-
-                    // Store the extracted data in a variable (or handle it however you like)
-                    console.log(qrData); // just for checking, will log the URL to the console
-                    console.log(encodedQrData);
-                    // Now you can use `qrData` to send it to another API or do anything else you want with it.
-                    const apiUrl = `https://api.redirect-checker.net/?url=${encodedQrData}&timeout=5&maxhops=10&meta-refresh=1&format=json&more=1`;
-                    
-                    // Now, use the Fetch API to send a GET request to this URL:
-                    fetch(apiUrl)
-                        .then(response => response.json())  // assuming server responds with json
-                        .then(data => {
-                            console.log(data);  // log the response data from the second API
-                        })
-                        .catch(error => {
-                            console.error('There was an error!', error);
-                        });
-                                    });
-            </script>
+            <h1 class="heading-primary">Advanced QR-Code Analysis</h1>
+            <div class="project-cs-hero__info">
+                <p class="text-primary">
+                    Dive deeper into your QR codes with advanced analytical tools!<br>
+                </p>
+            </div>
         </div>
     </section>
+    <form id="qrForm" enctype="multipart/form-data" action="https://bold-shadow-9c18.zdhenard42.workers.dev/decode-qr" method="POST">
+        <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
     
+        <div class="form-group">
+            <label for="qrCodeImage">Upload QR Code Image:</label>
+            <input name="file" type="file" id="qrCodeImage" accept=".png, .jpg, .jpeg" placeholder="Select QR Code Image" />
+        </div>
+    
+        <div class="form-group">
+            <input type="submit" value="Read QR code" class="submit-btn" />
+        </div>
+    </form>
+    <div id="loading" class="spinner" style="display: none;"></div>
+    <div id="output" class="result-container"  style="display: none;"></div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('qrForm');
+    const outputDiv = document.getElementById('output');
+    const loadingDiv = document.getElementById('loading');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        loadingDiv.style.display = 'block';
+        // Use Fetch API to send the form data
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form)
+        })
+        .then(response => response.json()) // assuming server responds with json
+        .then(data => {
+            console.log(data);
+            
+            // Convert JSON data to a nicely formatted string and set it to innerHTML
+            outputDiv.innerHTML = formatData(data);
+            loadingDiv.style.display = 'none';
+            outputDiv.style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            loadingDiv.style.display = 'none';
+            outputDiv.style.display = 'none';
+        });
+    });
+});
+
+// Helper function to format JSON data into a user-friendly string
+function formatData(data) {
+    let totalReports = data['virusTotalAnalysis'].malicious + data['virusTotalAnalysis'].suspicious + data['virusTotalAnalysis'].harmless + data['virusTotalAnalysis'].undetected;
+
+    return `
+    <div class="result-columns">
+        <div>
+            <strong>QR Code Original URL</strong>: ${data['qrUrl']}<br>
+            <strong>Redirects to</strong>: ${data['finalHost']}<br>
+            <strong>IP Address</strong>: ${data['HostIP']}<br>
+            <strong>Network</strong>: ${data['VirusTotalNetwork']}<br>
+            <strong>VirusTotal Report</strong>: <span style="${data['virusTotalAnalysis'].malicious > 0 ? 'color: red;' : ''}">${data['virusTotalAnalysis'].malicious}/${totalReports} malicious</span><br>
+            <strong>AbuseIPDB total reports</strong>: <span style="${data['abuseTotalReports'] > 0 ? 'color: red;' : ''}">${data['abuseTotalReports']}</span><br>
+            <strong>AbuseIPDB confidence of abuse</strong>: ${data['abuseConfidenceScore']}%<br>
+            <strong>URL Status</strong>: ${data['URLHausOffline']}<br>
+            <strong>URLHaus Threat Identification</strong>: ${data['URLHausThreat']}<br>
+            <strong>URLHaus Tags</strong>: ${data['URLHausTags']}<br>
+        </div>
+        <div>
+            <strong>Domain</strong>: ${data['abuseDomain']}<br>
+            <strong>ISP</strong>: ${data['abuseISP']}<br>
+            <strong>Is a Tor Relay</strong>: ${data['abuseIsTor']}<br>
+            <strong>Usage Type</strong>: ${data['abuseUsageType']}<br>
+            <strong>ASN</strong>: ${data['shodanASN']}<br>
+            <strong>Country</strong>: ${data['shodanCountry']}<br>
+            <strong>Operating Systems</strong>: ${data['shodanOS']}<br>
+            <strong>Open port(s)</strong>: ${data['shodanPorts']}<br>
+        </div>
+    </div>
+    <strong>WhoIS:</strong>
+    <div class="whois-data">
+        ${data['virusTotalWhoIs'].replace(/\n/g, '<br>')}
+    </div>
+    `;
+}
+        </script>
+        
 
     <section class="project-details">
         <div class="main-container">
