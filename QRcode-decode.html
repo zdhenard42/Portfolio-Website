@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/cve-footer.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet" />
     
 </head>
@@ -136,13 +137,15 @@ function formatData(data) {
         <div class="main-container">
           <div class="main-footer__upper">
             <div class="main-footer__row main-footer__row-1">
+              <div class="cve-section">
+                <h4 class="heading heading-sm text-lt">Latest CVE Alert</h4>
+                <div id="cve-content" class="cve-content">
+                  <p>Loading latest CVE information...</p>
+                </div>
+              </div>
             </div>
             <div class="main-footer__row main-footer__row-2">
               <h4 class="heading heading-sm text-lt">Zachary Henard</h4>
-              <p class="main-footer__short-desc">
-                "If you don't make mistakes, you're not working on hard enough problems. And that's a big mistake."<br>
-                -Frank Wilczek
-              </p>
             </div>
           </div>
         </div>

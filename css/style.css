@@ -896,3 +896,84 @@ object-fit: contain;
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+/* CVE Footer Styles */
+.cve-section {
+  margin-bottom: 2rem;
+}
+
+.cve-content {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #ff6b6b;
+  margin-top: 1rem;
+}
+
+.cve-item p {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.cve-id {
+  font-family: 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.cvss-score {
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  color: white;
+}
+
+.cvss-critical {
+  background-color: #d32f2f;
+}
+
+.cvss-high {
+  background-color: #f57c00;
+}
+
+.cvss-medium {
+  background-color: #fbc02d;
+  color: #333;
+}
+
+.cvss-low {
+  background-color: #388e3c;
+}
+
+.cvss-na {
+  background-color: #757575;
+}
+
+.cve-summary {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cvss-vector {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.5rem;
+}
+
+.cve-error {
+  color: #ff6b6b;
+  font-style: italic;
+}
+
+@media only screen and (max-width: 56.25em) {
+  .cve-content {
+    padding: 1rem;
+  }
+  
+  .cve-item p {
+    font-size: 1.3rem;
+  }
+}

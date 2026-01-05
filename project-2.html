@@ -15,6 +15,7 @@
     <title>Thick Client Migrator</title>
     <meta name="description" content="Thick Client Migrator" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/cve-footer.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -160,13 +161,15 @@
       <div class="main-container">
         <div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
+            <div class="cve-section">
+              <h4 class="heading heading-sm text-lt">Latest CVE Alert</h4>
+              <div id="cve-content" class="cve-content">
+                <p>Loading latest CVE information...</p>
+              </div>
+            </div>
           </div>
           <div class="main-footer__row main-footer__row-2">
             <h4 class="heading heading-sm text-lt">Zachary Henard</h4>
-            <p class="main-footer__short-desc">
-              "Once a new technology rolls over you, if you're not part of the steamroller, you're part of the road."<br>
-              -Stewart Brand
-            </p>
           </div>
         </div>
       </div>
