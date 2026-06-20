@@ -13,10 +13,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Zachary Henard</title>
-    <meta name="description" content="Portfolio" />
+    <title>Zachary Henard | Cybersecurity Portfolio</title>
+    <meta name="description" content="Zachary Henard's portfolio: cybersecurity and automation projects including a SOC multi-tool, a LinkedIn connection bot, and browser-based security utilities." />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/cve-footer.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,11 +26,7 @@
   </head>
   <body>
     <div id="header-placeholder"></div>
-    <script>
-        $(function(){
-            $("#header-placeholder").load("header.html");
-        });
-    </script>  
+    <script src="js/header-loader.js"></script>
     <section class="home-hero">
       <div class="home-hero__content">
         <h1 class="heading-primary">Welcome to Zachary Henard's portfolio</h1>
@@ -263,9 +258,10 @@
         <div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
             <div class="cve-section">
-              <h4 class="heading heading-sm text-lt">Latest CVE</h4>
+              <h4 class="heading heading-sm text-lt">Latest Published CVE</h4>
+                <p class="cve-subtitle">A recent CVE from the public vulnerability feed</p>
               <div id="cve-content" class="cve-content">
-                <p>Loading latest CVE information...</p>
+                <p>Loading the latest published CVE...</p>
               </div>
             </div>
           </div>

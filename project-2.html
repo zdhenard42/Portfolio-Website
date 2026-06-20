@@ -13,8 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Thick Client Migrator</title>
-    <meta name="description" content="Thick Client Migrator" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <meta name="description" content="Batch and PowerShell scripts that automate migrating employees from thick clients to thin clients across 13 tasks." />
     <script src="js/cve-footer.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,76 +24,8 @@
     />
   </head>
   <body>
-    <header class="header">
-      <div class="header__content">
-        <div class="header__logo-container">
-          <div class="header__logo-img-cont">
-            <img
-              src="./assets/png/Zachary-Henard.png"
-              alt="Zachary Henard"
-              class="header__logo-img"
-            />
-          </div>
-          <span class="header__logo-sub">Zachary Henard</span>
-        </div>
-        <div class="header__main">
-          <ul class="header__links">
-            <li class="header__link-wrapper">
-              <a href="./index.html" class="header__link"> Home </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="https://www.linkedin.com/in/zachary-henard/" class="header__link"> LinkedIn </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#about" class="header__link">About </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#projects" class="header__link">
-                Projects
-              </a>
-            </li>
-            <li class="header__link-wrapper">
-              <a href="./index.html#contact" class="header__link"> Contact </a>
-            </li>
-          </ul>
-          <div class="header__main-ham-menu-cont">
-            <img
-              src="./assets/svg/ham-menu.svg"
-              alt="hamburger menu"
-              class="header__main-ham-menu"
-            />
-            <img
-              src="./assets/svg/ham-menu-close.svg"
-              alt="hamburger menu close"
-              class="header__main-ham-menu-close d-none"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="header__sm-menu">
-        <div class="header__sm-menu-content">
-          <ul class="header__sm-menu-links">
-            <li class="header__sm-menu-link">
-              <a href="./index.html"> Home </a>
-            </li>
-            <li class="header__sm-menu-link">
-              <a href="https://www.linkedin.com/in/zachary-henard/" > LinkedIn </a>
-            </li>
-            <li class="header__sm-menu-link">
-              <a href="./index.html#about"> About </a>
-            </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#projects"> Projects </a>
-            </li>
-
-            <li class="header__sm-menu-link">
-              <a href="./index.html#contact"> Contact </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+    <div id="header-placeholder"></div>
+    <script src="js/header-loader.js"></script>
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
         <h1 class="heading-primary">Thick Client Migrator</h1>
@@ -162,9 +93,10 @@
         <div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
             <div class="cve-section">
-              <h4 class="heading heading-sm text-lt">Latest CVE</h4>
+              <h4 class="heading heading-sm text-lt">Latest Published CVE</h4>
+                <p class="cve-subtitle">A recent CVE from the public vulnerability feed</p>
               <div id="cve-content" class="cve-content">
-                <p>Loading latest CVE information...</p>
+                <p>Loading the latest published CVE...</p>
               </div>
             </div>
           </div>

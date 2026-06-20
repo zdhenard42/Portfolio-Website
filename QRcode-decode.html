@@ -14,10 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>QR Code Reader</title>
+    <meta name="description" content="Decode a QR code and check its destination URL against VirusTotal, AbuseIPDB, Shodan, and URLHaus for known threats." />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/cve-footer.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet" />
     
@@ -25,11 +25,7 @@
 
 <body>
   <div id="header-placeholder"></div>
-  <script>
-      $(function(){
-          $("#header-placeholder").load("header.html");
-      });
-  </script>  
+  <script src="js/header-loader.js"></script>
     <section class="project-cs-hero">
         <div class="project-cs-hero__content">
             <h1 class="heading-primary">Advanced QR-Code Analysis</h1>
@@ -62,85 +58,131 @@
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        const file = document.getElementById('qrCodeImage').files[0];
+        if (!file) {
+            outputDiv.innerHTML = errorBlock('Please choose a QR code image first.');
+            outputDiv.style.display = 'block';
+            return;
+        }
         loadingDiv.style.display = 'block';
+        outputDiv.style.display = 'none';
         // Use Fetch API to send the form data
         fetch(form.action, {
             method: form.method,
             body: new FormData(form)
         })
-        .then(response => response.json()) // assuming server responds with json
-        .then(data => {
-            console.log(data);
-            
-            // Convert JSON data to a nicely formatted string and set it to innerHTML
-            outputDiv.innerHTML = formatData(data);
+        .then(response => response.json().then(data => ({ ok: response.ok, data })))
+        .then(({ ok, data }) => {
+            outputDiv.innerHTML = ok ? formatData(data) : errorBlock(data.error || 'Something went wrong analyzing that QR code.');
             loadingDiv.style.display = 'none';
             outputDiv.style.display = 'block';
         })
         .catch(error => {
             console.error('Error:', error);
+            outputDiv.innerHTML = errorBlock('Could not reach the analysis service. Please try again in a moment.');
             loadingDiv.style.display = 'none';
-            outputDiv.style.display = 'none';
+            outputDiv.style.display = 'block';
         });
     });
 });
 
+// Escapes text pulled from third-party APIs (WHOIS, domain names, etc.) before it goes into innerHTML
+function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// Only allow http(s) links — blocks javascript: or data: URIs that could come from a malicious QR code or API response
+function safeHref(url) {
+    if (typeof url !== 'string') return null;
+    try {
+        const parsed = new URL(url, window.location.href);
+        return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.href : null;
+    } catch {
+        return null;
+    }
+}
+
+// Renders a value as a link if a safe URL is supplied, otherwise as escaped plain text (with a fallback for missing data)
+// Pass isHtml: true only for values built internally (never for raw API data) that intentionally contain markup
+function field(label, value, linkUrl, isHtml) {
+    const isEmpty = value === undefined || value === null || value === '';
+    const display = isEmpty ? 'N/A' : (isHtml ? value : escapeHtml(value));
+    const href = isEmpty ? null : safeHref(linkUrl);
+    const valueHtml = href
+        ? `<a href="${href}" target="_blank" rel="noopener noreferrer">${display}</a>`
+        : display;
+    return `<strong>${escapeHtml(label)}</strong>: ${valueHtml}<br>`;
+}
+
+function errorBlock(message) {
+    return `<div class="error-message">${message}</div>`;
+}
+
+// Decides the overall risk banner from the combined signals returned by the worker
+function riskBanner(data) {
+    const malicious = data.virusTotalAnalysis?.malicious ?? 0;
+    const suspicious = data.virusTotalAnalysis?.suspicious ?? 0;
+    const abuseScore = data.abuseConfidenceScore ?? 0;
+
+    if (malicious > 0 || data.URLHausListed || abuseScore >= 50) {
+        return { level: 'risk-high', label: 'High Risk — known malicious indicators found' };
+    }
+    if (suspicious > 0 || abuseScore > 0) {
+        return { level: 'risk-medium', label: 'Caution — some suspicious indicators found' };
+    }
+    return { level: 'risk-low', label: 'No known threats detected' };
+}
+
 // Helper function to format JSON data into a user-friendly string
 function formatData(data) {
-    let totalReports = data['virusTotalAnalysis'].malicious + data['virusTotalAnalysis'].suspicious + data['virusTotalAnalysis'].harmless + data['virusTotalAnalysis'].undetected;
+    const vt = data['virusTotalAnalysis'];
+    const totalReports = vt ? vt.malicious + vt.suspicious + vt.harmless + vt.undetected : 0;
+    const risk = riskBanner(data);
 
     return `
+    <div class="risk-banner ${risk.level}">${risk.label}</div>
     <div class="result-columns">
         <div>
-            <strong>QR Code Original URL</strong>: ${data['qrUrl']}<br>
-            <strong>Redirects to</strong>: ${data['finalHost']}<br>
-            <strong>IP Address</strong>: ${data['HostIP']}<br>
-            <strong>Network</strong>: ${data['VirusTotalNetwork']}<br>
-            <strong>VirusTotal Report</strong>: <span style="${data['virusTotalAnalysis'].malicious > 0 ? 'color: red;' : ''}">${data['virusTotalAnalysis'].malicious}/${totalReports} malicious</span><br>
-            <strong>AbuseIPDB total reports</strong>: <span style="${data['abuseTotalReports'] > 0 ? 'color: red;' : ''}">${data['abuseTotalReports']}</span><br>
-            <strong>AbuseIPDB confidence of abuse</strong>: ${data['abuseConfidenceScore']}%<br>
-            <strong>URL Status</strong>: ${data['URLHausOffline']}<br>
-            <strong>URLHaus Threat Identification</strong>: ${data['URLHausThreat']}<br>
-            <strong>URLHaus Tags</strong>: ${data['URLHausTags']}<br>
+            ${field('QR Code Original URL', data['qrUrl'], data['qrUrl'])}
+            ${field('Redirects to', data['finalHost'], data['finalHost'])}
+            ${field('IP Address', data['HostIP'], data['shodanLink'])}
+            ${field('Network', data['VirusTotalNetwork'])}
+            ${field('VirusTotal Report', vt ? `<span style="${vt.malicious > 0 ? 'color: red;' : ''}">${vt.malicious}/${totalReports} malicious</span>` : null, data['virusTotalLink'], true)}
+            ${field('AbuseIPDB total reports', `<span style="${data['abuseTotalReports'] > 0 ? 'color: red;' : ''}">${data['abuseTotalReports'] ?? 'N/A'}</span>`, data['abuseIPDBLink'], true)}
+            ${field('AbuseIPDB confidence of abuse', data['abuseConfidenceScore'] !== undefined ? `${data['abuseConfidenceScore']}%` : undefined, data['abuseIPDBLink'])}
+            ${field('URL Status', data['URLHausOffline'], data['URLHausReference'])}
+            ${field('URLHaus Threat Identification', data['URLHausThreat'], data['URLHausReference'])}
+            ${field('URLHaus Tags', data['URLHausTags']?.join(', '))}
         </div>
         <div>
-            <strong>Domain</strong>: ${data['abuseDomain']}<br>
-            <strong>ISP</strong>: ${data['abuseISP']}<br>
-            <strong>Is a Tor Relay</strong>: ${data['abuseIsTor']}<br>
-            <strong>Usage Type</strong>: ${data['abuseUsageType']}<br>
-            <strong>ASN</strong>: ${data['shodanASN']}<br>
-            <strong>Country</strong>: ${data['shodanCountry']}<br>
-            <strong>Operating Systems</strong>: ${data['shodanOS']}<br>
-            <strong>Open port(s)</strong>: ${data['shodanPorts']}<br>
+            ${field('Domain', data['abuseDomain'])}
+            ${field('ISP', data['abuseISP'])}
+            ${field('Is a Tor Relay', data['abuseIsTor'])}
+            ${field('Usage Type', data['abuseUsageType'])}
+            ${field('ASN', data['shodanASN'], data['shodanLink'])}
+            ${field('Country', data['shodanCountry'])}
+            ${field('Operating Systems', data['shodanOS'])}
+            ${field('Open port(s)', data['shodanPorts']?.join(', '))}
         </div>
     </div>
-    <strong>WhoIS:</strong>
+    ${data['virusTotalWhoIs'] ? `<strong>WhoIS:</strong>
     <div class="whois-data">
-        ${data['virusTotalWhoIs'].replace(/\n/g, '<br>')}
-    </div>
+        ${escapeHtml(data['virusTotalWhoIs']).replace(/\n/g, '<br>')}
+    </div>` : ''}
     `;
 }
         </script>
         
-
-    <section class="project-details">
-        <div class="main-container">
-            <div class="project-details__content">
-                <div class="project-details__showcase-img-cont">
-                    <div id="output" class="project-details__desc-para"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <footer class="main-footer">
         <div class="main-container">
           <div class="main-footer__upper">
             <div class="main-footer__row main-footer__row-1">
               <div class="cve-section">
-                <h4 class="heading heading-sm text-lt">Latest CVE</h4>
+                <h4 class="heading heading-sm text-lt">Latest Published CVE</h4>
+                <p class="cve-subtitle">A recent CVE from the public vulnerability feed</p>
                 <div id="cve-content" class="cve-content">
-                  <p>Loading latest CVE information...</p>
+                  <p>Loading the latest published CVE...</p>
                 </div>
               </div>
             </div>

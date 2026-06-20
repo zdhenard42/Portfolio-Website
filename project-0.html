@@ -13,9 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>LinkedIn Bot</title>
-    <meta name="description" content="Details of LinkedInBot" />
+    <meta name="description" content="A Python/Selenium bot that automates LinkedIn connection requests at scale (700+ per week) without triggering bot detection." />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/cve-footer.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,11 +25,7 @@
   </head>
   <body>
     <div id="header-placeholder"></div>
-    <script>
-        $(function(){
-            $("#header-placeholder").load("header.html");
-        });
-    </script>  
+    <script src="js/header-loader.js"></script>
     <section class="project-cs-hero">
       <div class="project-cs-hero__content">
         <h1 class="heading-primary">LinkedIn Connection Bot</h1>
@@ -94,9 +89,10 @@
         <div class="main-footer__upper">
           <div class="main-footer__row main-footer__row-1">
             <div class="cve-section">
-              <h4 class="heading heading-sm text-lt">Latest CVE</h4>
+              <h4 class="heading heading-sm text-lt">Latest Published CVE</h4>
+                <p class="cve-subtitle">A recent CVE from the public vulnerability feed</p>
               <div id="cve-content" class="cve-content">
-                <p>Loading latest CVE information...</p>
+                <p>Loading the latest published CVE...</p>
               </div>
             </div>
           </div>

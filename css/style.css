@@ -848,6 +848,44 @@ object-fit: contain;
   overflow-wrap: break-word; /* Helps with long, unbroken strings of text */
 }
 
+.result-container a {
+  color: #007BFF;
+  word-break: break-all;
+}
+
+.risk-banner {
+  font-weight: 700;
+  padding: 12px 16px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.risk-banner.risk-low {
+  background-color: #e6f4ea;
+  color: #1e7e34;
+  border: 1px solid #b6dfc0;
+}
+
+.risk-banner.risk-medium {
+  background-color: #fff8e1;
+  color: #8a6500;
+  border: 1px solid #ffe187;
+}
+
+.risk-banner.risk-high {
+  background-color: #fdecea;
+  color: #c0392b;
+  border: 1px solid #f5b7ae;
+}
+
+.error-message {
+  color: #c0392b;
+  background-color: #fdecea;
+  border: 1px solid #f5b7ae;
+  padding: 12px 16px;
+  border-radius: 5px;
+}
+
 .spinner {
   border: 8px solid #f3f3f3; /* Light grey */
   border-top: 8px solid #007BFF; /* Blue */
@@ -893,13 +931,20 @@ object-fit: contain;
   background-color: #f1f1f1; /* Change background color on hover */
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
   display: block;
 }
 
 /* CVE Footer Styles */
 .cve-section {
   margin-bottom: 2rem;
+}
+
+.cve-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.2rem;
 }
 
 .cve-content {

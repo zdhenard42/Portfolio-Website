@@ -15,9 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>User-Agent Parser</title>
-
+    <meta name="description" content="Parse a User-Agent string to identify browser, OS, device, and engine details." />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/cve-footer.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,11 +25,7 @@
 
 <body>
   <div id="header-placeholder"></div>
-  <script>
-      $(function(){
-          $("#header-placeholder").load("header.html");
-      });
-  </script>  
+  <script src="js/header-loader.js"></script>
     <section class="project-cs-hero">
         <div class="project-cs-hero__content">
             <h1 class="heading-primary">User-Agent Parser</h1>
@@ -51,9 +46,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Copying the footer from the LinkedIn Bot page -->
-    <!--... your footer code ...-->
 
     <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/src/ua-parser.min.js"></script>
     <script>
@@ -118,9 +110,10 @@ function manualParse() {
           <div class="main-footer__upper">
             <div class="main-footer__row main-footer__row-1">
               <div class="cve-section">
-                <h4 class="heading heading-sm text-lt">Latest CVE</h4>
+                <h4 class="heading heading-sm text-lt">Latest Published CVE</h4>
+                <p class="cve-subtitle">A recent CVE from the public vulnerability feed</p>
                 <div id="cve-content" class="cve-content">
-                  <p>Loading latest CVE information...</p>
+                  <p>Loading the latest published CVE...</p>
                 </div>
               </div>
             </div>
